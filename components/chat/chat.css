@@ -1,0 +1,73 @@
+position: absolute;
+height: 100%;
+width: 100%;
+
+.log {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  margin: 0;
+  padding: 4px;
+  overflow: auto;
+
+  .message {
+    margin-bottom: .5em;
+    list-style-type: none;
+  }
+
+  .date {
+    display: inline-block;
+    font-size: 12px;
+    color: gray;
+    width: 6em;
+  }
+
+  .author {
+    background: #e2e2e2;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin-right: .5em;
+  }
+}
+
+form.new-message {
+  @send-width: 55px;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 24px;
+  margin-bottom: 2px;
+
+  input {
+    height: 24px;
+    border: 1px solid gray;
+  }
+
+  .text {
+    position: absolute;
+    left: 0;
+    right: @send-width;
+    margin-right: 2px;
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0 4px;
+    }
+  }
+
+  input[type="submit"] {
+    position: absolute;
+    right: 0;
+    width: @send-width;
+    background: #ddd;
+
+    &:active {
+      background: #ccc;
+    }
+  }
+}

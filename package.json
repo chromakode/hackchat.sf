@@ -1,0 +1,10 @@
+{
+  "name": "spanner.sf",
+    "description": "another superfluous app",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+      "superfluous" : "x"
+    }
+}
+

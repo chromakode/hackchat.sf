@@ -1,0 +1,8 @@
+{
+  "main" : "chat",
+  "style": "chat.css",
+  "styles": [],
+  "template": "chat.html.erb",
+  "helpers": [],
+  "no_redefine" : false
+}
