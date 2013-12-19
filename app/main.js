@@ -10,10 +10,21 @@
   , bcrypt = require('bcrypt')
   , config = require('./config.js')*/
 
+var db = require_app("server/db");
+var userlist = require_app("server/userlist");
+
 module.exports = {
   setup: function(options) {},
 
-  setup_app: function(express_app) {
+  setup_app: function(app, io) {
+    db.install();
+  },
+
+  setup_auth: function(app, io) {
+    userlist.install(io); // We give sockets to userlist so it can scan them
+  },
+
+  nothing: function(express_app) {
     return;
     var couch = new cradle.connection()
       , moddb = exports.moddb = couch.database('spanner-mods')

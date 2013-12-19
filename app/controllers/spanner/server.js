@@ -1,6 +1,8 @@
 "use strict";
 
-var template = require_core("server/template")
+var db = require_app("server/db");
+var userlist = require_app("server/userlist");
+var msglog = require_app("server/msglog");
 
 var _replay = [];
 module.exports = {
@@ -29,6 +31,7 @@ module.exports = {
         ts: Date.now()
       };
       s.broadcast.emit('message', packed);
+      db.logdb.save(packed);
       _replay.push(packed);
     });
 
@@ -36,11 +39,18 @@ module.exports = {
       s.broadcast.emit('part', user);
     });
 
+    s.on('who', function() {
+      s.emit('who', userlist.list());
+    });
+
     s.broadcast.emit('join', user);
 
     // replay log
-    _.each(_replay, function(p) {
-      s.emit('message', p);
+    msglog.fetch(function(msgs) {
+      _.each(msgs, function(p) {
+        s.emit('message', p);
+      });
     });
+
   }
 };
